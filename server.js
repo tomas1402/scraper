@@ -4,7 +4,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var app     = express();
 
-app.get('/scraper', function(req, res){
+app.get('/', function(req, res){
 
   //URL a scrapear:
   url = 'http://www.imdb.com/title/tt1229340/';
