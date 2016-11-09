@@ -38,7 +38,7 @@ app.get('/', function(req, res){
 		//Parametro 2 JSON.stringify(json, null, 4) son los datos a escribir.
 		//Parametro 3 es la funcion callback.
 
-		fs.writeFile(output.json,JSON.stringify({ title: "title", release: "release", rating: "rating" }, null, 4), function(err){
+		fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
 		console.log('File successfully written! - Check your project directory for the output.json file');
 
 		})
