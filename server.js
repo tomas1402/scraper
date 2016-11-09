@@ -29,7 +29,7 @@ app.get('/', function(req, res){
 		return this.nodeType == 3; 
 		})[0].nodeValue, 
 		release : $("#final-price").html(), 
-		rating : $(".gb-main-detail-prices-before").next().html();
+		rating : $(".gb-main-detail-prices-before").next().html()
 		};
 		console.log(json);
 			
