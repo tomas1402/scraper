@@ -32,6 +32,7 @@ app.get('/scraper', function(req, res){
             release : $("#titleYear a").html(), 
             rating : $("span[itemprop='ratingValue']").html()
             };
+			console.log(json);
            }
     
           //Para escribir el json usamos la librería 'fs'.$
