@@ -47,6 +47,7 @@ app.get('/', function(req, res){
           
           // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
           res.send('Check your console!')
+		  res.send(json)
           });
 
 })
