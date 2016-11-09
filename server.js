@@ -7,7 +7,7 @@ var app     = express();
 app.get('/', function(req, res){
 
   //URL a scrapear:
-  url = 'http://www.imdb.com/title/tt1229340/';
+  url = 'https://www.garbarino.com/producto/tv-led-lg-32-hd-32lf565.awg/d52efb2ad0';
   
   //La estructura de nuestra request call.
   //El primer parametro es la URL, y el callback toma 3 parametros, error, respuesta y el codigo html.
@@ -25,11 +25,11 @@ app.get('/', function(req, res){
 		//Definimos variables que vamos a scrapear.
 		var title, release, rating;
 		var json = { 
-		title : $(".title_wrapper h1[itemprop='name']").contents().filter(function(){ 
+		title : $(".gb-main-detail-title.gb--promo-title h1[itemprop='name']").contents().filter(function(){ 
 		return this.nodeType == 3; 
 		})[0].nodeValue, 
-		release : $("#titleYear a").html(), 
-		rating : $("span[itemprop='ratingValue']").html()
+		release : $("#final-price").html(), 
+		rating : $(".gb-main-detail-prices-before").next().html();
 		};
 		console.log(json);
 			
