@@ -14,46 +14,43 @@ app.get('/', function(req, res){
   
   request(url, function(error, response, html){
           
-          //Primero vericamos que no hubo errores.
-          
-          if(!error){
-            //Ahora utilizamos Cheerio para ver el HTML.
-    
-            var $ = cheerio.load(html);
-            
-            //Definimos variables que vamos a scrapear.
-            
-            // variables to capture
-            var title, release, rating;
-            var json = { 
-            title : $(".title_wrapper h1[itemprop='name']").contents().filter(function(){ 
-            return this.nodeType == 3; 
-            })[0].nodeValue, 
-            release : $("#titleYear a").html(), 
-            rating : $("span[itemprop='ratingValue']").html()
-            };
-			console.log(json);
-           }
-    
-          //Para escribir el json usamos la librería 'fs'.$
-          //Parametro 1 el archivo que creamos.
-          //Parametro 2 JSON.stringify(json, null, 4) son los datos a escribir.
-          //Parametro 3 es la funcion callback.
-          
-          //fs.writeFile(output.json, JSON.stringify(json, null, 4), function(err){
-            //console.log('File successfully written! - Check your project directory for the output.json file');
-            
-          //})
-          
-          // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
-          res.send('Check your console!')
-		  res.send(json)
-          });
+		//Primero vericamos que no hubo errores.
+
+		if(!error){
+		//Ahora utilizamos Cheerio para ver el HTML.
+
+		var $ = cheerio.load(html);
+		}
+
+		//Definimos variables que vamos a scrapear.
+		var title, release, rating;
+		var json = { 
+		title : $(".title_wrapper h1[itemprop='name']").contents().filter(function(){ 
+		return this.nodeType == 3; 
+		})[0].nodeValue, 
+		release : $("#titleYear a").html(), 
+		rating : $("span[itemprop='ratingValue']").html()
+		};
+		console.log(json);
+			
+		//Para escribir el json usamos la librería 'fs'.$
+		//Parametro 1 el archivo que creamos.
+		//Parametro 2 JSON.stringify(json, null, 4) son los datos a escribir.
+		//Parametro 3 es la funcion callback.
+
+		fs.writeFile(output.json,JSON.stringify({ title: "title", release: "release", rating: "rating" }, null, 4), function(err){
+		console.log('File successfully written! - Check your project directory for the output.json file');
+
+		})
+
+		// Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
+		res.send('Check your console!')
+		});
 
 })
 
 app.listen(process.env.PORT || 5000)
 
-console.log('Magic happens on port 8081');
+console.log('Magic happens on port {0}', app.port());
 
 exports = module.exports = app;
