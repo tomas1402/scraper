@@ -49,8 +49,10 @@ app.get('/', function(req, res){
 
 })
 
-app.listen(process.env.PORT || 5000)
+app.set('port', process.env.PORT || 5000)
 
-console.log('Magic happens on port {0}', app.port());
+app.listen(app.get('port'));
+
+console.log('Magic happens on port ' +  app.get('port'));
 
 exports = module.exports = app;
